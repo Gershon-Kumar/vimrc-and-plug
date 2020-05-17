@@ -1,18 +1,40 @@
+" ----------------------------------------
+" Automatic installation of vim-plug, if it's not available
+" ----------------------------------------
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+"-----------------------------------------
+
+"-----------------------------------------
+" Automatically install missing plugins on startup
+"-----------------------------------------
+autocmd VimEnter *
+      \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+      \|   PlugInstall --sync | q
+      \| endif
+"-----------------------------------------
+
+
+"Plugins
+"-----------------------------------------
+
+
 if filereadable(expand("~/.vimrc.plug"))
      source ~/.vimrc.plug
  endif
 
-set number
-set tabstop=4
-set shiftwidth=4
-set expandtab
-colorscheme codedark
 
 
 call plug#begin('~/.vim/plugged')
 
     "Auto prettier for VIM
     Plug 'prettier/vim-prettier'
+
+    "VS code color Scheme
+    Plug 'tomasiser/vim-code-dark'
 
     "VIM Nerd Tree
     Plug 'preservim/nerdtree'	
@@ -50,3 +72,9 @@ vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
 
 
+" My Config
+set number
+set tabstop=4
+set shiftwidth=4
+set expandtab
+colorscheme codedark
