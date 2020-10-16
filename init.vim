@@ -17,6 +17,10 @@ call plug#begin("~/.vim/plugged")
 	Plug 'leafgarland/typescript-vim'
 	Plug 'peitalin/vim-jsx-typescript'
 
+	"C++ Auto complete
+	Plug 'justmao945/vim-clang'
+	Plug 'scrooloose/syntastic'
+
 
 call plug#end()
 
@@ -68,5 +72,10 @@ call plug#end()
 	"Prettify document press "fdn" (format document now)
 	nnoremap fdn :silent %!prettier --stdin-filepath %<CR>
 
-
+	"my config
+	set number
+	set tabstop=4
+	set shiftwidth=4
+	set guifont=Hack:h12
+	set clipboard=unnamed
 
